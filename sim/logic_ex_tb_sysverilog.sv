@@ -5,7 +5,8 @@ module logic_ex_tb_sysverilog;
   logic [1:0] SW;
   logic [3:0] LED;
 
-  logic_ex u_logic_ex (.*);
+  //logic_ex u_logic_ex (.*);
+  logic_ex u_logic_ex (.SW(SW),.LED(LED));
 
   // Stimulus
   initial begin
