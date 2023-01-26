@@ -1,6 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
-
+use std.env.stop;
 
 entity logic_ex_tb is
 end logic_ex_tb;
@@ -33,34 +33,23 @@ begin
     end process
 	
 	-- Checking
-	process (SW_tb, LED) begin
+	process (LED) begin
 	
 		if (NOT SW_tb(0) !== LED(0)) then
 			report"FAIL: NOT Gate mismatch";
+			stop;
+			
+		if ((SW_tb(0) AND SW_tb(1)) !== LED(1)) then
+			report"FAIL: AMD Gate mismatch";
+			stop;
+			
+		if ((SW_tb(0) OR SW_tb(1)) !== LED(2)) then
+			report"FAIL: OR Gate mismatch";
+			stop;
+			
+		if ((SW_tb(0) XOR SW_tb(1)) !== LED(3)) then
+			report"FAIL: XOR Gate mismatch";
+			stop;
 		
 	end
 end Behavioral ;
-
-    
-    if (!SW[0] !== LED[0]) begin
-      $display("FAIL: NOT Gate mismatch");
-      $stop;
-    end
-    
-    if (&SW[1:0] !== LED[1]) begin
-      $display("FAIL: AND Gate mismatch");
-      $stop;
-    end
-
-    if (|SW[1:0] !== LED[2]) begin
-      $display("FAIL: OR Gate mismatch");
-      $stop;
-    end
-
-    if (^SW[1:0] !== LED[3]) begin
-      $display("FAIL: XOR Gate mismatch");
-      $stop;
-    end
-
-  end
-endmodule // logic_ex_tb_sysverilog

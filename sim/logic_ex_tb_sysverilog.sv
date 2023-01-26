@@ -22,7 +22,7 @@ module logic_ex_tb_sysverilog;
   end
 
   // Checking
-  always @(SW, LED) begin
+  always @(LED) begin
     
     if (!SW[0] !== LED[0]) begin
       $display("FAIL: NOT Gate mismatch");
