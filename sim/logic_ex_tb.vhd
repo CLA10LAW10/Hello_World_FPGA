@@ -1,8 +1,9 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_unsigned.all;
+use ieee.numeric_std.all;
 use std.env.stop;
-use ieee.numeric_std.all ;
+--use ieee.std_logic_unsigned.all;
+--use IEEE.std_logic_signed.all;
 
 entity logic_ex_tb is
 end logic_ex_tb;
@@ -27,8 +28,8 @@ begin
 		--$printtimescale(logic_ex_tb);
 		SW_tb <= "00";
 		for i in 0 to 10 loop
-			report "Setting switches to" & integer'image(SW_tb);
-			SW_tb <= i;
+			--report "Setting switches to" & integer'image(SW_tb);
+			SW_tb <= std_logic_vector(to_unsigned(i, SW_tb'length));
 			wait for 100 ns;
 		end loop;
 		report "PASS: logic_ex test PASSED!";
